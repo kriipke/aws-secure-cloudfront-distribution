@@ -47,3 +47,18 @@ package-function:
 	make clean
 	make package-static
 	cd source/secured-headers/ && zip -r ../../s-headers.zip index.js
+
+cfn-transform:
+	make package-function
+	aws --region us-east-1 cloudformation package \
+		--template-file templates/main.yaml \
+		--s3-bucket xtal-devops --s3-prefix templates/static-cloudfront-site \
+		--output-template-file static-cloudfront-site.template
+
+cfn-deploy:
+	make cfn-transform
+	aws --region us-east-1 cloudformation deploy \
+		--stack-name msp-cloudfront \
+		--template-file static-cloudfront-site.template \
+		--capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
+		--parameter-overrides  DomainName="mountainsportsperformance.com" SubDomain="www"
