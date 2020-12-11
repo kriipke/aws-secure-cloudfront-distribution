@@ -97,7 +97,7 @@ Resources:
           LambdaFunctionAssociations:
             - 
               EventType: origin-response
-              LambdaFunctionARN: 'arn:aws:lambda:us-east-1:148633485533:function:msp-cloudfront-CloudFrontStack-LambdaEdgeFunction-RQUIT40E85EI:2'
+              LambdaFunctionARN: 'arn:aws:lambda:us-east-1:148633485533:function:msp-cloudfront-CloudFrontStack-LambdaEdgeFunction-RQUIT40E85EI:9'
           ViewerProtocolPolicy: 'redirect-to-https'
         CustomErrorResponses:
           - ErrorCachingMinTTL: 60
